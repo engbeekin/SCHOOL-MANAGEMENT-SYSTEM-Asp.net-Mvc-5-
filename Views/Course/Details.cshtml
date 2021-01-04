@@ -1,0 +1,43 @@
+﻿@model SchoolMangement.Models.course
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <div class="container">
+        <h2 class="text-capitalize text-primary text-center" style="margin-top:30px">Course Details</h2>
+
+        <div style="margin-top:30px">
+            
+
+
+            <table class="table ">
+                <tr class="table table-primary">
+                    <th>
+                        Course
+                    </th>
+                    <th>
+                        Duration
+                    </th>
+
+                </tr>
+
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.course1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.duration)
+                    </td>
+
+                </tr>
+
+
+            </table>
+
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-success" }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div></div>

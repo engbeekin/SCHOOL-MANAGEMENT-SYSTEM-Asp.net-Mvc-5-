@@ -1,0 +1,70 @@
+﻿@model SchoolMangement.Models.registration
+
+@{
+    ViewBag.Title = "Details";
+}
+    <div class="container">
+        <h2 class="text-uppercase text-primary text-center" style="margin-top:30px">Student Details</h2>
+
+        <div style="margin-top:30px">
+
+
+
+            <table class="table ">
+                <tr class="table table-primary">
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        Mobile
+                    </th>
+                    <th>
+                        Batch
+                    </th>
+                    <th>
+                        Course
+                    </th>
+                    <th>
+                        Teacher
+                    </th>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.firstname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.lastname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.mobile)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.batch.batch1)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.course.course1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.techear.name)
+
+                    </td>
+
+                </tr>
+
+
+            </table>
+
+
+        </div>
+
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-success" }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>

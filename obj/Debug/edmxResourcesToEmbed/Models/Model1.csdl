@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StudentMangementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="batch">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="batch1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="year" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="registrations" Relationship="Self.FK_registration_batch" FromRole="batch" ToRole="registration" />
+  </EntityType>
+  <EntityType Name="course">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="course1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="duration" Type="Int32" />
+    <NavigationProperty Name="registrations" Relationship="Self.FK_registration_course" FromRole="course" ToRole="registration" />
+    <NavigationProperty Name="techears" Relationship="Self.FK_techears_course" FromRole="course" ToRole="techears" />
+  </EntityType>
+  <EntityType Name="registration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="course_id" Type="Int32" />
+    <Property Name="batch_id" Type="Int32" />
+    <Property Name="techearname" Type="Int32" />
+    <Property Name="mobile" Type="Int32" />
+    <NavigationProperty Name="batch" Relationship="Self.FK_registration_batch" FromRole="registration" ToRole="batch" />
+    <NavigationProperty Name="course" Relationship="Self.FK_registration_course" FromRole="registration" ToRole="course" />
+    <NavigationProperty Name="techear" Relationship="StudentMangementModel.FK_registration_techears" FromRole="registration" ToRole="techear" />
+  </EntityType>
+  <EntityType Name="techear">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="coursename" Type="Int32" />
+    <NavigationProperty Name="course" Relationship="Self.FK_techears_course" FromRole="techears" ToRole="course" />
+    <NavigationProperty Name="registrations" Relationship="StudentMangementModel.FK_registration_techears" FromRole="techear" ToRole="registration" />
+  </EntityType>
+  <Association Name="FK_registration_batch">
+    <End Role="batch" Type="Self.batch" Multiplicity="0..1" />
+    <End Role="registration" Type="Self.registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="batch">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="registration">
+        <PropertyRef Name="batch_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_registration_course">
+    <End Role="course" Type="Self.course" Multiplicity="0..1" />
+    <End Role="registration" Type="Self.registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="registration">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_techears_course">
+    <End Role="course" Type="Self.course" Multiplicity="0..1" />
+    <End Role="techears" Type="Self.techear" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="techears">
+        <PropertyRef Name="coursename" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="StudentMangementEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="batches" EntityType="Self.batch" />
+    <EntitySet Name="courses" EntityType="Self.course" />
+    <EntitySet Name="registrations" EntityType="Self.registration" />
+    <EntitySet Name="techears" EntityType="Self.techear" />
+    <AssociationSet Name="FK_registration_batch" Association="Self.FK_registration_batch">
+      <End Role="batch" EntitySet="batches" />
+      <End Role="registration" EntitySet="registrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_registration_course" Association="Self.FK_registration_course">
+      <End Role="course" EntitySet="courses" />
+      <End Role="registration" EntitySet="registrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_techears_course" Association="Self.FK_techears_course">
+      <End Role="course" EntitySet="courses" />
+      <End Role="techears" EntitySet="techears" />
+    </AssociationSet>
+    <AssociationSet Name="FK_registration_techears" Association="StudentMangementModel.FK_registration_techears">
+      <End Role="techear" EntitySet="techears" />
+      <End Role="registration" EntitySet="registrations" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_registration_techears">
+    <End Type="StudentMangementModel.techear" Role="techear" Multiplicity="0..1" />
+    <End Type="StudentMangementModel.registration" Role="registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="techear">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="registration">
+        <PropertyRef Name="techearname" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

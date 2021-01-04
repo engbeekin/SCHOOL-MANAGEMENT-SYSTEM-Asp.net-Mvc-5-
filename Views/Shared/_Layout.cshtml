@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .navbar-inverse {
+            background-color: #337ab7;
+            padding: 5px;
+        }
+
+        .navbar-collapse .nav .navbar-nav {
+            color: white;
+            Background-color: red;
+        }
+
+
+
+        .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand span {
+            color: white;
+            font-family: cursive;
+            font-style: italic;
+            text-transform: uppercase;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: white;
+            font-size: 17px;
+            margin-left: 20px
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top navbar-dark bg-primary">
+        <div class="container">
+
+            <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            </button>
+
+            <a class="navbar-brand" href="/">School Ms</a>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item"><a href="/Home/Index" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="/Course/Index" class="nav-link">Course</a></li>
+                    <li class="nav-item"><a href="/Batch/Index" class="nav-link">Batches</a></li>
+                    <li class="nav-item"><a href="~/Teacher/Index" class="nav-link">Techears</a></li>
+                    <li class="nav-item"><a href="/Register/Index" class="nav-link">Registration</a></li>
+                </ul>
+
+
+                @Html.Partial("_LoginPartial")
+
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid body-content">
+        @RenderBody()
+        <hr />
+        <footer class=" text-center">
+            <p> Developed By Beekin Company  &copy; @DateTime.Now.Year </p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

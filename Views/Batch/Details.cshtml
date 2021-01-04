@@ -1,0 +1,41 @@
+﻿@model SchoolMangement.Models.batch
+
+@{
+    ViewBag.Title = "Details";
+}
+
+ 
+        <h2 class="text-capitalize text-primary text-center" style="margin-top:30px">Batch Details</h2>
+
+        <div class="container">
+
+            <table class="table ">
+                <tr class="table table-primary">
+                    <th>
+                        Batch
+                    </th>
+                    <th>
+                        Year
+                    </th>
+
+                </tr>
+
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.batch1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.year)
+                    </td>
+
+                </tr>
+
+
+            </table>
+           
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-success" }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>

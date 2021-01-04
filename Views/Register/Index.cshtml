@@ -1,0 +1,88 @@
+﻿@model IEnumerable<SchoolMangement.Models.registration>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <h2 class="text-uppercase text-black text-center" style="margin-top:30px">Students </h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-primary" })
+    </p>
+    <p>
+
+        @Html.ActionLink("PDF", "Report", new { ReportType = "PDF" }, new { @class = "btn btn-danger" }) |
+        @Html.ActionLink("Excel", "Report", new { ReportType = "Excel" }, new { @class = "btn btn-success" }) |
+        @Html.ActionLink("Word", "Report", new { ReportType = "Word" }, new { @class = "btn btn-primary" }) |
+        @Html.ActionLink("Image", "Report", new { ReportType = "Image" }, new { @class = "btn btn-info" })
+
+
+
+    </p>
+    <table class="table"  id="mybache">
+        <tr class="table table-primary">
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+
+            <th>
+                Mobile
+            </th>
+            <th>
+                Batch
+            </th>
+            <th>
+                Course
+            </th>
+            <th>
+                Teacher
+            </th>
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lastname)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.mobile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.batch.batch1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.course.course1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.techear.name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('#mybache').DataTable();
+        });
+    </script>
+
+}
