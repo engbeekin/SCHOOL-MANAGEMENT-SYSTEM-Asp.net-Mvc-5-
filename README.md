@@ -16,7 +16,7 @@ Authorized
 - Manager Can Add Course
 - Manager can Add batch
 - Manager can Add Teacher
-- also Manager can edit or delete all c
+- also Manager can edit or delete all 
 
 
 # Technologies I used this project
